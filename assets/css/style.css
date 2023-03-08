@@ -18,10 +18,12 @@ h1 {
 div.gallery {
     border: 2px solid #4D135F;
     border-radius: 15px;
+    background-color: #e3c0ee;
 }
 div.gallery2 {
     border: 2px solid #c9c62d;
     border-radius: 15px;
+    background-color: #f7f6ba;
 }
 div.desc {
     padding: 15px;
