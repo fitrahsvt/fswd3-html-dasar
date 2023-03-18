@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 25px;
+}
+
+ul {
+    padding: 0;
+}
+
+ul li {
+    border-radius: 10px;
+    position: relative;
+    padding: 20px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    background: peachpuff;
+    cursor: pointer;
+}
+
+ul li:hover {
+    background: indianred;
+    color: white;
+}
+
+ul li.checked {
+    background: indianred;
+    text-decoration: line-through;
+    color: white;
+}
+
+.close {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+}
+
+.close:hover {
+    background-color: red;
+    color: white;
+}
+
+.header {
+    border-radius: 10px;
+    background-color: darkred;
+    padding: 50px 40px;
+    color: white;
+    text-align: center;
+}
+
+.header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+input {
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 80%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+    padding: 10px;
+    width: 20%;
+    background: rgb(252, 189, 135);
+    color: black;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.addBtn:hover {
+    background-color: indianred;
+    color: white;
+}
