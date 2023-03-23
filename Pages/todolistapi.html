@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript API TODO List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="jumbotron mt-4 mx-4 p-5 bg-primary text-white rounded">
+      <h1 class="text-center">TO DO LIST</h1>
+      <br /><br />
+
+      <div class="input-group">
+        <input
+          id="myinput"
+          type="text"
+          class="form-control"
+          placeholder="Tulis Disini"
+        />
+        <button
+          class="btn bg-success p-2 text-white bg-opacity-75"
+          id="btn"
+          type="button"
+        >
+          Tambahkan
+        </button>
+      </div>
+    </div>
+    <br />
+
+    <div class="alert-container mx-4 mt-3"></div>
+
+    <script>
+const input = document.getElementById("myinput");
+const toggle = document.getElementById("btn");
+const alertContainer = document.querySelector(".alert-container");
+const apiUrl = "https://crudcrud.com/api/c54b63cb1f3242a1897428d9cd435a96/tasks";
+
+const savedTasks = localStorage.getItem("tasks");
+if (savedTasks) {
+  alertContainer.innerHTML = savedTasks;
+}
+
+toggle.addEventListener("click", function () {
+  const task = input.value;
+  const alertMsg = `
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" data-id="">
+      ${task}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+  alertContainer.innerHTML += alertMsg;
+  input.value = "";
+
+  localStorage.setItem("tasks", alertContainer.innerHTML);
+
+  const alerts = alertContainer.querySelectorAll(".alert");
+  alerts.forEach((alert) => {
+    alert.addEventListener("click", function (event) {
+      const alertId = event.target.closest(".alert").getAttribute("data-id");
+      if (alertId) {
+        fetch(`${apiUrl}/${alertId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      }
+      alert.classList.toggle("text-decoration-line-through");
+    });
+  });
+
+  const closeButtons = alertContainer.querySelectorAll(".btn-close");
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const alert = button.parentElement;
+      const alertId = alert.getAttribute("data-id");
+      if (alertId) {
+        fetch(`${apiUrl}/${alertId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      }
+      alert.remove();
+      localStorage.setItem("tasks", alertContainer.innerHTML);
+    });
+  });
+  fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      task: task
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      const newAlert = alertContainer.querySelector(`[data-id=""]`);
+      newAlert.setAttribute("data-id", data._id);
+    })
+    .catch((error) => console.log(error));
+});
+
+window.addEventListener("load", function () {
+  const alerts = alertContainer.querySelectorAll(".alert");
+  alerts.forEach((alert) => {
+    alert.addEventListener("click", function (event) {
+      const alertId = event.target.closest(".alert").getAttribute("data-id");
+      if (alertId) {
+        fetch(`${apiUrl}/${alertId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      }
+      alert.classList.toggle("text-decoration-line-through");
+    });
+  });
+
+  const closeButtons = alertContainer.querySelectorAll(".btn-close");
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const alert = button.parentElement;
+            alert.remove();
+            localStorage.setItem("tasks", alertContainer.innerHTML);
+          });
+        });
+      });
+
+    </script>
+  </body>
+</html>
