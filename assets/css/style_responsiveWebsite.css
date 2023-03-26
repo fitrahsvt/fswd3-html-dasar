@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav{
+    background-color: #245953;
+}
+
+.logo{
+    margin: 0 40em 0 10em;
+    font-family: Courier;
+    
+}
+
+nav ul{
+    display: flex;
+    padding: 1.5em;
+}
+
+nav ul li{
+    list-style: none;
+    margin: 0 2em;
+}
+
+nav ul li a{
+    list-style: none;
+    color: white;
+    text-decoration: none;
+}
+
+.head{
+    background-color: #E4DCCF;
+    padding: 2em;
+}
+
+.head h1{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.head p{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.head-content{
+    padding-left: 2em;
+}
+.main-content{
+    padding: 20px;
+}
+
+.card-content{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card{
+    width: 260px;
+    height: 350px;
+    background-color: #7AA874;
+    padding: 2em 2em;
+    margin: 20px;
+    border-radius: 5%;
+    margin-top: 2em;
+    box-shadow: 0 4px 8px 0 black;
+}
+
+.card h3{
+    text-align: center;
+}
+
+.card p{
+    text-align: justify
+}
+
+.card img{
+    width: 250px;
+    height: 150px;
+    border-radius: 5%;
+}
+
+.content{
+    display: flex;
+    background-color: #F7DB6A;
+}
+
+.end-content{
+    padding-top: 20px;
+    line-height: 40px;
+}
+
+.end-content ul{
+    padding: 0px;
+}
+
+.end-content ul li{
+    list-style: none;
+    margin-top: 0.5em;
+}
+
+.end-content ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+
+@media(max-width : 800px){
+
+
+    .logo{
+        margin: 0;
+    }
+
+    nav ul{
+        display: flexbox;
+        flex-direction: column;
+        text-align: center;
+
+    }
+
+    .content{
+        display: flexbox;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card{
+        align-items: center;
+        margin: 2em auto ;
+    }
+
+    .card-content{
+        display: flexbox;
+        flex-direction: column;
+    }
+
+
+    .end-content {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 0;
+    }
+
+    .end-content ul {
+        list-style: none;
+        padding: 20px 0;
+    }
+    
+    hr{
+        width: 260px;
+        margin: auto;
+    }
+      
+
+
+
+}
