@@ -1,84 +1,100 @@
 let poin = 0;
-if (confirm("Apakah Kamu ingin bermain batu, gunting, kertas?")) {
-    function game() {
-        let pemain = prompt("Masukkan pilihan mu batu/gunting/kertas");
-        if(pemain){
-            let computer = Math.random();
-            switch (true) {
-                case computer < 0.30:
-                computer = "kertas";
+//function menentukan pilihan
+function game(){
+    let player = prompt("Masukkan Pilihan Anda Batu/Gunting/Kertas");
+    if (player) {
+        //pilihan komputer
+        let computer = Math.random();
+        if (computer < 0.33) {
+            computer = "Batu";
+        }else if(computer < 0.66){
+            computer = "Gunting";
+        }else{
+            computer = "Kertas";
+        }
+        //pilihan player
+        switch (player) {
+            case computer:
+                alert("Hasil Seri!");
+                alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                lanjut();
                 break;
-                case computer <= 0.70:
-                computer = "batu";
-                break;
-                default:
-                computer = "gunting";
-                break;
-            }
-        
-            switch (pemain) {
-                case computer:
-                alert("Hasil: Seri!");
-                break;
-                case "batu":
+            case "Gunting":
                 switch (computer) {
-                    case "gunting":
-                    alert("Hasil: Kamu Menang!");
-                    poin += 10;
-                    break;
+                    case "Kertas":
+                        alert("Selamat anda menang!");
+                        poin +=1;
+                        alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                        lanjut();
+                        break;
                     default:
-                    alert("Hasil: Kamu Kalah!");
-                    poin -= 10;
-                    break;
+                        alert("Yahh anda kalah!");
+                        poin-=1;
+                        alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                        lanjut();
+                        break;
                 }
                 break;
-                case "gunting":
+            case "Kertas":
                 switch (computer) {
-                    case "kertas":
-                    alert("Hasil: Kamu Menang!");
-                    poin += 10;
-                    break;
+                    case "Batu":
+                        alert("Selamat anda menang!");
+                        poin +=1;
+                        alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                        lanjut();
+                        break;
                     default:
-                    alert("Hasil: Kamu Kalah!");
-                    poin -= 10;
-                    break;
+                        alert("Yahh anda kalah!");
+                        poin-=1;
+                        alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                        lanjut();
+                        break;
                 }
                 break;
-                case "kertas":
+            case "Batu":
                 switch (computer) {
-                    case "batu":
-                    alert("Hasil: Kamu Menang!");
-                    poin += 10;
-                    break;
+                    case "Gunting":
+                        alert("Selamat anda menang!");
+                        poin +=1;
+                        alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                        lanjut();
+                        break;
                     default:
-                    alert("Hasil: Kamu Kalah!");
-                    poin -= 10;
-                    break;
+                        alert("Yahh anda kalah!");
+                        poin-=1;
+                        alert(`Kamu : ${player} \nKomputer : ${computer} \npoin : ${poin}`);
+                        lanjut();
+                        break;
                 }
                 break;
-                default:
-                alert("Pilihan tidak tersedia!");
-                break;
-            }
-        
-            alert(`Kamu Memilih : ${pemain} \nKomputer Memilih : ${computer} \nPoin Kamu : ${poin}`);
-        
-            let lagi = confirm("Lanjut Bermain?");
-            if (lagi) {
+            default:
+                alert("Pilihan tidak tersedia")
                 game();
-            } else {
-                alert(`Terima kasih sudah bermain! \nPoin Kamu: ${poin}`);
-            }
-        } else{
-            if(confirm("Kamu Tidak Jadi lanjut main?")){
-                alert(`Terima kasih! \nPoin Kamu: ${poin}`);
-            }else{
-                game();
-            }
-        }  
+                break;
+        }
+    } else {
+        if (confirm("Kamu tidak jadi main?")) {
+            hasil();
+        } else {
+            game();
+        }
     }
-    game();
+};
+//fungsi lanjut
+function lanjut(){
+    if(confirm("Lanjut bermain?")){
+        game();
+    }else{
+        hasil();
+    }
+};
+//fungsi untuk menampilkan hasil
+function hasil(){
+    alert(`Terima Kasih Sudah Bermain! \nPoin Kamu : ${poin}`);
+};
+//Mulai Permainan
+if (confirm("Apakah anda Ingin Bermain Batu/Gunting/Kertas?")) {  
+    game();   
 } else {
-    alert("Baiklah, sampai jumpa lagi!");
+    alert("Baiklah Sampai Jumpa lagi!");
 }
-
